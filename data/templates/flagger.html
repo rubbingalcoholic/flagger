@@ -1,0 +1,30 @@
+<div class="promo">
+	<img src="images/fftf/heart.png" width="30" height="30"/>
+	If you love Flagger, please consider <a href="https://donate.fightforthefuture.org/donate/fftf" target="_blank">donating</a> to
+	<a href="http://www.fightforthefuture.org/" target="_blank"><img src="images/fftf/logo.png" width="200" height="30"/></a>
+	<a class="never_again" href="#">Never show this again.</a>
+</div>
+<div class="field">
+	<div class="text">
+		<label for="message">Choose your message:</label>
+		<div class="hint">
+			<strong>Optional.</strong> They watch practically everything you do online. Might as well tell them how
+			you really feel. Your message is added to every URL you visit.
+		</div>
+	</div>
+	<textarea id="message" placeholder="Dear NSA,"><%=unescape(message)%></textarea>
+</div>
+<div class="field">
+	<div class="text">
+		<label for="red_flags">Choose your red flags:</label>
+		<div class="hint">
+			Get their attention. A random selection of your choices
+			get added to the web addresses you visit.
+			<a href="#" class="select" id="select_all">Select all.</a>
+			<a href="#" class="select hide" id="select_none">Select none.</a>
+		</div>
+	</div>
+	<input type="text" id="entry" placeholder="enter your own"/>
+	<a href="#" id="clear_entry">×</a>
+	<ul id="flags"></ul>
+</div>

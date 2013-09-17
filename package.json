@@ -1,0 +1,19 @@
+{
+  "name": "flagger",
+  "fullName": "Flagger",
+  "id": "flagger@flagger.io",
+  "description": "Flagger floods the Internet with red flags, overwhelming unconstitutional government surveillance with the mighty power of free speech.",
+  "author": "Jeff Lyon",
+  "dependencies": ["toolbarwidget"],
+  "license": "MIT",
+  "version": "0.9",
+  "preferences": [
+  {
+      "name": "open_dashboard",
+      "title": "Set more Flagger options in the dashboard:",
+      "type": "control",
+      "label": "FLAGGER SETTINGS DASHBOARD"
+    }
+  ],
+  "icon": "data/images/icon_logo_48.png"
+}

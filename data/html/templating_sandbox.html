@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="utf-8"> 
+		<title>Flagger Sandbox!</title>
+		
+		<script type="text/javascript" src="../js/underscore.js"></script>
+		<script type="text/javascript">
+
+			var TEMPLATES = {};
+
+			window.addEventListener('message', function(event) {
+
+				var command = event.data.command;
+				var data	= event.data.data;
+				
+				switch(command)
+				{
+					case 'are_you_alive':
+
+						event.source.postMessage({HELO: true}, event.origin);
+						break;
+
+					case 'render':
+
+						event.source.postMessage({
+							id: data.id,
+							html: TEMPLATES[data.name](data.context)
+						}, event.origin);
+						break;
+
+					case 'init_template':
+
+						TEMPLATES[data.name] = _.template(data.content);
+						debug_log('initializing template: '+data.name);
+						break;
+				}
+			});
+
+			var debug_log = function(str)
+			{
+				document.getElementById('debug').innerHTML += str+'<br/>';
+			}
+		</script>
+	</head>
+	<body><div id="debug"></div></body>
+</html>

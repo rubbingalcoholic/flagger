@@ -1,0 +1,33 @@
+{
+	"manifest_version": 2,
+	"name": "Flagger",
+	"version": "0.9",
+	"icons": {
+		"19": "data/images/icon_logo_19.png",
+		"48": "data/images/icon_logo_48.png",
+		"128": "data/images/icon_logo_128.png"
+	},
+	"description": "Flagger floods the Internet with red flags, overwhelming unconstitutional government surveillance with the mighty power of free speech.",
+	"browser_action": {
+		"default_title" : "Click for Flagger!",
+		"default_icon" : {
+			"19": "data/images/flag_gray.png",
+			"38": "data/images/flag_gray_38.png"
+		},
+		"default_popup": "data/html/popup.html"
+	},
+	"background": {
+		"scripts": [
+			"lib/flagger_http_observer_chrome.js",
+			"lib/flagger.js",
+			"lib/main_chrome.js"
+		],
+		"persistent": true
+	},
+	"permissions": ["tabs", "webRequest", "webRequestBlocking", "http://*/*", "https://*/*"],
+	"content_security_policy": "script-src 'self'; object-src 'self'",
+	"sandbox": {
+		"pages": ["data/html/templating_sandbox.html"]
+	}
+
+}
