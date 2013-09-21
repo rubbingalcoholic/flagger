@@ -2,11 +2,11 @@
   "name": "flagger",
   "fullName": "Flagger",
   "id": "flagger@flagger.io",
-  "description": "Flagger floods the Internet with red flags, overwhelming unconstitutional government surveillance with the mighty power of free speech.",
+  "description": "Flagger floods the Internet with red flag keywords. It shouldn't bother the NSA since they're not supposed to spy on us anyway.",
   "author": "Jeff Lyon",
   "dependencies": ["toolbarwidget"],
-  "license": "MIT",
-  "version": "0.9",
+  "license": "GPL v3",
+  "version": "1.0.1",
   "preferences": [
   {
       "name": "open_dashboard",

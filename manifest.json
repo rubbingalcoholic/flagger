@@ -1,13 +1,13 @@
 {
 	"manifest_version": 2,
 	"name": "Flagger",
-	"version": "0.9",
+	"version": "1.0.1",
 	"icons": {
 		"19": "data/images/icon_logo_19.png",
 		"48": "data/images/icon_logo_48.png",
 		"128": "data/images/icon_logo_128.png"
 	},
-	"description": "Flagger floods the Internet with red flags, overwhelming unconstitutional government surveillance with the mighty power of free speech.",
+	"description": "Flagger floods the Internet with red flag keywords. It shouldn't bother the NSA since they're not supposed to spy on us anyway.",
 	"browser_action": {
 		"default_title" : "Click for Flagger!",
 		"default_icon" : {

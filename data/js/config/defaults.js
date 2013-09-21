@@ -10,7 +10,6 @@
 
 var DEFAULT_FLAGS = [
 	{t: '911'},
-	{t: 'Allah'},
 	{t: 'Allahu Akbar'},
 	{t: 'airplane'},
 	{t: 'airport'},
@@ -33,10 +32,12 @@ var DEFAULT_FLAGS = [
 	{t: 'death to America'},
 	{t: 'dirty bomb'},
 	{t: 'downfall'},
+	{t: 'drone down'},
 	{t: 'embassy'},
 	{t: 'encrypt'},
 	{t: 'espionage'},
 	{t: 'explosion'},
+	{t: 'extraction req'},
 	{t: 'fake ID'},
 	{t: 'grid'},
 	{t: 'gun'},
@@ -57,11 +58,14 @@ var DEFAULT_FLAGS = [
 	{t: 'overthrow'},
 	{t: 'poison'},
 	{t: 'Port Authority'},
+	{t: 'precursor'},
 	{t: 'pressure cooker'},
 	{t: 'radical'},
+	{t: 'reaction'},
 	{t: 'regime'},
 	{t: 'ricin'},
 	{t: 'Russia'},
+	{t: 'sarin'},
 	{t: 'SEA'},
 	{t: 'strike'},
 	{t: 'subway'},
@@ -72,7 +76,7 @@ var DEFAULT_FLAGS = [
 	{t: 'undetected'},
 	{t: 'warfare'},
 	{t: 'weapon'},
-	{t: 'WMATA'},
+	{t: 'WMATA'}
 ];
 
 var VIEWS = {
