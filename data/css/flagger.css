@@ -10,11 +10,8 @@ body {
 	-moz-user-select: -moz-none;
 	-ms-user-select: none;
 	user-select: none;
-
 	cursor: default;
-
 	font-family: Georgia, serif;
-
 	background-color: #c3461b;
 	transition: color .5s linear, background-color .5s linear, border-color .5s linear;
 }
@@ -161,7 +158,16 @@ div.field .text {
 	left: 0px;
 	top: 69px;
 }
+div.field hr {
+	margin-top: 79px;
+	border-top: 1px dotted #c3461b;
+	border-right: 0px none transparent;
+	border-left: 0px none transparent;
+	border-bottom: 0px none transparent;
+	transition: color .5s linear, background-color .5s linear, border-color .5s linear;
+}
 div.field label {
+	padding-top: 10px;
 	display: inline-block;
 	width: 420px;
 	text-align: right;
@@ -169,6 +175,9 @@ div.field label {
 	letter-spacing: 1px;
 	color: #c3461b;
 	transition: color .5s linear, background-color .5s linear, border-color .5s linear;
+}
+div.field label:first-child {
+	padding-top: 0px;
 }
 
 div.field textarea {
@@ -375,6 +384,14 @@ ul#flags li.is_hidden {
 	margin-bottom: 10px;
 }
 
+.social_crap {
+	padding-top: 15px;
+	text-align: left;
+}
+.social_crap img {
+	margin: 0px 0px 0px 4px;
+}
+
 
 body.inactive { background-color: #888; }
 body.inactive header { background-color: #888; }
@@ -387,3 +404,4 @@ body.inactive ul#flags li.is_active a { background: #888; color: white; }
 body.inactive a#clear_entry { background-color: #888; }
 body.inactive .promo { background-color: #3d3d3d; }
 body.inactive a.never_again { color: #bfbfbf; }
+body.inactive div.field hr { border-color: #888; }

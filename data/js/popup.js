@@ -11,7 +11,7 @@
 var site_url 		= 'http%3A%2F%2Fflagger.io';
 var facebook_url	= 'https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fflagger.io';
 var twitter_url 	= 'https://twitter.com/intent/tweet?source=webclient&text='
-var twitter_body	= 'Flagger%20is%20flooding%20the%20Internet%20with%20red%20flag%20keywords%20and%20free%20speech%21';
+var twitter_body	= 'Get%20Flagger%E2%80%94the%20app%20that%20trolls%20the%20NSA%20with%20red%20flags%20%26%20free%20speech!';
 var google_url		= 'https://plus.google.com/share?url=http%3A%2F%2Fflagger.io';
 
 document.addEventListener('flagger_add_on_message', function(e) {
@@ -145,7 +145,7 @@ var show_red_flags = function()
 		flags = escape(flags.join('+'));
 
 		$('#facebook').prop('href', facebook_url + '%3Flulz%3D'+flags);
-		$('#twitter').prop('href', twitter_url + flags.toUpperCase() + '%21+' + twitter_body + '+' + site_url);
+		$('#twitter').prop('href', twitter_url + (flags.toUpperCase() ? flags.toUpperCase() + '%21+' : '') + twitter_body + '+' + site_url);
 		$('#google').prop('href', google_url + '%3Flulz%3D'+flags);
 	});
 }
