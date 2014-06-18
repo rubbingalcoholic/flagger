@@ -12,18 +12,17 @@ console.log('INITIALIZED CONTENT SCRIPT');
 
 document.addEventListener('flagger_add_on_request', function(e) {
 
-	console.log('content script sending request to add-on ('+e.detail.id+': '+e.detail.msg_type+')');
 	self.port.emit('request', e.detail);
 });
 
 self.port.on('response', function(response) {
 
-	console.log('content script sending response to page ('+response.id+': '+response.msg_type+')');
-	document.dispatchEvent(new CustomEvent("flagger_add_on_response", {detail:response}));
+	unsafeWindow._FLAGGER_ADD_ON_RESPONSE = cloneInto(response, unsafeWindow);
+	document.dispatchEvent(new CustomEvent("flagger_add_on_response", {detail:unsafeWindow._FLAGGER_ADD_ON_RESPONSE}));
 });
 
 self.port.on('message', function(message) {
 
-	console.log('content script sending one-off message to page ('+message.msg_type+')');
-	document.dispatchEvent(new CustomEvent("flagger_add_on_message", {detail:message}));
+	unsafeWindow._FLAGGER_ADD_ON_MESSAGE = cloneInto(message, unsafeWindow);
+	document.dispatchEvent(new CustomEvent("flagger_add_on_message", {detail:unsafeWindow._FLAGGER_ADD_ON_MESSAGE}));
 });
