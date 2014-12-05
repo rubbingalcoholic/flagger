@@ -4,9 +4,9 @@
   "id": "flagger@flagger.io",
   "description": "Flagger floods the Internet with red flag keywords. It shouldn't bother the NSA since they're not supposed to spy on us anyway.",
   "author": "Jeff Lyon",
-  "dependencies": ["toolbarwidget"],
+  "dependencies": [],
   "license": "GPL v3",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "preferences": [
   {
       "name": "open_dashboard",
