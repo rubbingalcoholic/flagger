@@ -20,9 +20,7 @@ Installation Instructions
 -------------------------
 **Firefox:**
 
-* Install the [Firefox Add-on SDK][2]
-* DEPENDENCY: Install [Rob--W's toolbarwidget-jplib][2] Add-on SDK package (Rob
-              provides really nice installation directions)
+* Install the [Firefox Add-on SDK 1.17][2]
 * With the SDK activated, `cd` to the directory with the Flagger source code
 * Run `cfx xpi` to build the extension, saves to _flagger.xpi_.
 * Open the add-ons settings screen in Firefox
