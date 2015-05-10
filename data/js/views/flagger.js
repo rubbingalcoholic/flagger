@@ -9,10 +9,9 @@
  */
 var FlaggerView = Backbone.View.extend({
 
-	tagName:  "div",
+	el: '#main',
 
-	events:
-	{
+	events: {
 		'keyup #entry': 'handle_entry',
 		'change #entry': 'handle_entry',
 		'click #clear_entry': 'clear_entry',
@@ -20,12 +19,12 @@ var FlaggerView = Backbone.View.extend({
 		'click #select_none': 'select_none',
 		'change #message': 'save_message',
 
-		// promo related
+		// fftf donation ask related
 		'click a.never_again': 'dismiss_promo'
 	},
 
-	initialize: function()
-	{
+	initialize: function() {
+
 		this.render();
 
 		this.listenTo(this.options.flags_collection, 'add', this.render_flags);
@@ -36,61 +35,55 @@ var FlaggerView = Backbone.View.extend({
 		}.bind(this);
 	},
 
-	render: function()
-	{
-		flagger.templating.render('flagger', {message: SETTINGS.user_message}, function(html) {
+	render: function() {
 
-			this.$el.html(html);
-			$("#view").html(this.$el);
-			$('html,body').animate({scrollTop: 0}, 500);
+		$('#tos').hide();
+		$('#main').show();
+		$('html,body').animate({scrollTop: 0}, 500);
 
-			this.render_flags();
+		this.render_flags();
 
-			if (this.options.flags_collection.are_all_active())
-			{
-				$('#select_none').css('display', 'inline');
-				$('#select_all').css('display', 'none');
-			}
+		if (this.options.flags_collection.are_all_active())
+		{
+			$('#select_none').css('display', 'inline');
+			$('#select_all').css('display', 'none');
+		}
 
-			// promo related
-			this.handle_promo_display_logic();
+		$('#message').val(unescape(SETTINGS.user_message));
 
-		}.bind(this));
-		
+		this.handle_promo_display_logic();
+
 		return this;
 	},
 
-	render_flags: function()
-	{
+	render_flags: function() {
+
 		var _flags = this.options.flags_collection;
+		var flags = document.getElementById('flags');
 
 		_flags.each(function(flag) {
 
-			if (!$("#flag_" + flag.id).length)
-			{
+			if (!document.getElementById("flag_" + flag.id)) {
 				var view = new FlagView({model: flag});
 
-				view.render(function(rendered_view) {
-
-					this.$("ul#flags").prepend(rendered_view.el);
-
-				}.bind(this));				
+				if (flags.childNodes.length)
+					flags.insertBefore(view.el,	flags.childNodes[0]);
+				else
+					flags.appendChild(view.el);
 			}
-
 			return this;
 		});
 	},
 
-	handle_entry: function(e)
-	{
+	handle_entry: function(e) {
+
 		var entry = $('#entry').val();
 
 		this.options.flags_collection.filter_list(entry);
 
-		if (typeof e.keyCode != "undefined")
-		{
-			switch (e.keyCode)
-			{
+		if (typeof e.keyCode != "undefined") {
+
+			switch (e.keyCode) {
 				case 13:
 					this.options.flags_collection.add_list([entry], true);
 					this.save_list();
@@ -107,16 +100,16 @@ var FlaggerView = Backbone.View.extend({
 			$('#clear_entry').css('display', 'none');
 	},
 
-	clear_entry: function(e)
-	{
+	clear_entry: function(e) {
+
 		if (e) e.preventDefault();
 
 		$('#entry').val('').trigger('change');
 		$('#clear_entry').css('display', 'none');
 	},
 
-	select_all: function(e)
-	{
+	select_all: function(e) {
+
 		e.preventDefault();
 
 		this.options.flags_collection.set_is_active(true);
@@ -126,8 +119,8 @@ var FlaggerView = Backbone.View.extend({
 		$('#select_all').css('display', 'none');
 	},
 
-	select_none: function(e)
-	{
+	select_none: function(e) {
+
 		e.preventDefault();
 
 		this.options.flags_collection.set_is_active(false);
@@ -137,34 +130,33 @@ var FlaggerView = Backbone.View.extend({
 		$('#select_all').css('display', 'inline');
 	},
 
-	save_list: function(e)
-	{
+	save_list: function(e) {
+
 		addon_io.call('set_setting', {setting: 'user_flags', val: this.options.flags_collection.render_list()}, function(data) {
 			console.log('saved list');
 		});
 	},
 
-	save_message: function(e)
-	{
+	save_message: function(e) {
+
 		addon_io.call('set_setting', {setting: 'user_message', val: escape($('#message').val())}, function(data) {
 			console.log('saved message');
 		});
 	},
 
-	// promo related
-	handle_promo_display_logic: function()
-	{
+	// fftf donation ask related
+	handle_promo_display_logic: function() {
+
 		SETTINGS.promo_1_hits++;
 		addon_io.call('set_setting', {setting: 'promo_1_hits', val: SETTINGS.promo_1_hits}, function(data) {});
 
 		if (SETTINGS.promo_1_hits >= 3 && !SETTINGS.promo_1_dismissed)
 			$('.promo').slideDown();
-		
 	},
 
-	// promo related
-	dismiss_promo: function(e)
-	{
+	// fftf donation ask related
+	dismiss_promo: function(e) {
+
 		e.preventDefault();
 		SETTINGS.promo_1_dismissed = true;
 		addon_io.call('set_setting', {setting: 'promo_1_dismissed', val: SETTINGS.promo_1_dismissed}, function(data) {});

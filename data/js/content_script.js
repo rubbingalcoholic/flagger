@@ -11,18 +11,19 @@
 console.log('INITIALIZED CONTENT SCRIPT');
 
 document.addEventListener('flagger_add_on_request', function(e) {
-
 	self.port.emit('request', e.detail);
 });
 
 self.port.on('response', function(response) {
-
-	unsafeWindow._FLAGGER_ADD_ON_RESPONSE = cloneInto(response, unsafeWindow);
-	document.dispatchEvent(new CustomEvent("flagger_add_on_response", {detail:unsafeWindow._FLAGGER_ADD_ON_RESPONSE}));
+    var cloned = cloneInto(response, document.defaultView);
+    var event = document.createEvent('CustomEvent');
+    event.initCustomEvent("flagger_add_on_response", true, true, cloned);
+    document.documentElement.dispatchEvent(event);
 });
 
 self.port.on('message', function(message) {
-
-	unsafeWindow._FLAGGER_ADD_ON_MESSAGE = cloneInto(message, unsafeWindow);
-	document.dispatchEvent(new CustomEvent("flagger_add_on_message", {detail:unsafeWindow._FLAGGER_ADD_ON_MESSAGE}));
+    var cloned = cloneInto(message, document.defaultView);
+    var event = document.createEvent('CustomEvent');
+    event.initCustomEvent("flagger_add_on_message", true, true, cloned);
+    document.documentElement.dispatchEvent(event);
 });

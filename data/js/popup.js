@@ -94,13 +94,20 @@ var handle_toggle_color = function()
 		$('.slide-button').removeClass('gray');
 	}
 }
+var kill_flags = function() {
+	var flags = document.getElementById('flags');
+
+	while (flags.firstChild) 
+	    flags.removeChild(flags.firstChild);
+
+}
 var hide_red_flags = function()
 {
 	$('.turn_me_on').css('opacity', 1);
 	$('#flags').css('opacity', 0);
 	$('.subhead').css('opacity', 0);
 	$('#flags_area').removeClass('active');
-	$('#flags').html('');
+	kill_flags();
 
 	$('#facebook').prop('href', facebook_url);
 	$('#twitter').prop('href', twitter_url + '%20' + twitter_body + '%20' + site_url);
@@ -113,7 +120,7 @@ var show_red_flags = function()
 	$('#flags').css('opacity', 1);
 	$('.subhead').css('opacity', 1);
 	$('#flags_area').addClass('active');
-	$('#flags').html('');
+	kill_flags();
 
 	addon_io.call('get_red_flags', {}, function(response) {
 
@@ -124,8 +131,13 @@ var show_red_flags = function()
 			console.log('flags.length: '+flags.length);
 			for (var i = 0; i < flags.length; i++)
 			{
-				console.log('adding flag: '+flags[i]);
-				$('#flags').html($('#flags').html() + '<li class="new">' + flags[i] + '</li>');
+				var flag = flags[i];
+				console.log('adding flag: '+flag);
+
+				var li = document.createElement('li');
+				li.className = 'new';
+				li.textContent = flag;
+				document.getElementById('flags').appendChild(li);
 			}
 			
 			window.setTimeout(function() {
@@ -139,7 +151,15 @@ var show_red_flags = function()
 		else
 		{
 			console.log('no flags :(');
-			$('#flags').html('<li class="tiny">None :(<br/>Go to settings and choose some&hellip;</li>');
+			var li = document.createElement('li');
+			li.className = 'tiny';
+			li.textContent = 'None :(';
+			document.getElementById('flags').appendChild(li);
+			
+			var li = document.createElement('li');
+			li.className = 'tiny';
+			li.textContent = 'Go to settings and choose some…';
+			document.getElementById('flags').appendChild(li);
 		}
 
 		flags = escape(flags.join('+'));

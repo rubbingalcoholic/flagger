@@ -38,34 +38,23 @@ var flagger = {
 
 	is_initialized: false,
 
-	templating: null,
-
-	templates: ['flag', 'flagger', 'flagger_switch', 'options', 'tos'],
-
-	initialize: function()
-	{
+	initialize: function() {
+		
 		if (this.is_initialized)
 			return false;
 
 		$(function() {
 			
 			this.is_initialized = true;
-			this.templating = new templating_sandbox(document.getElementById('templating'), function() {
-				this.templating.load_templates(this.templates, this.handle_route.bind(this));
-			}.bind(this));
+			this.handle_route();
 			
 		}.bind(this));
 
 	},
 
-	handle_route: function()
-	{
-		$('body').css('display', 'block');
-		
+	handle_route: function() {
 		if (SETTINGS.tos_accepted == false)
-		{
 			VIEWS.tos = new TosView({});
-		}
 		else
 		{
 			var flags_collection = new Flags(DEFAULT_FLAGS);
@@ -73,9 +62,7 @@ var flagger = {
 			flags_collection.add_list(SETTINGS.user_flags, true);
 
 			VIEWS.flagger = new FlaggerView({flags_collection: flags_collection});
-
 			VIEWS.options = new OptionsView({});
-
 			VIEWS.flagger_switch = new FlaggerSwitchView({});
 		}
 	}

@@ -15,41 +15,40 @@ var FlagView = Backbone.View.extend({
 		"click a": 	"toggle"
 	},
 
+	is_rendered: false,
+
 	initialize: function() {
+		
 		this.listenTo(this.model, 'change', this.render);
 		this.listenTo(this.model, 'destroy', this.remove);
+		this.render();
 	},
 
 	render: function(callback) {
 
-		(callback && typeof callback == 'function') || (callback = function() {});
-
-		// prevent reflows lololo
-		if (!this.$el.html())
-		{
-			flagger.templating.render('flag', this.model.attributes, function(html) {
-
-				this.$el.html(html);
-				this.toggle_classes();
-				callback(this);
-			}.bind(this));
-			
+		if (!this.is_rendered) {
+			this.is_rendered = true;
+			var a = document.createElement('a');
+			a.href = '#';
+			a.id = 'flag_'+this.model.attributes.id;
+			a.textContent  = this.model.attributes.t;
+			this.el.appendChild(a);
+			this.toggle_classes();
 		}
 		else
-		{
 			this.toggle_classes();
-			callback(this);
-		}
+		
+		return this;
 	},
 
-	toggle: function(e)
-	{
+	toggle: function(e) {
+
 		e.preventDefault();
 		this.model.toggle_is_active();
 	},
 
-	toggle_classes: function()
-	{
+	toggle_classes: function() {
+
 		this.$el.toggleClass('is_active', this.model.get('is_active'));
 		this.$el.toggleClass('is_hidden', this.model.get('is_hidden'));
 	}

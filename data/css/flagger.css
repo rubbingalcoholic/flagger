@@ -27,13 +27,6 @@ header {
 	background-color: #c3461b;
 	transition: color .5s linear, background-color .5s linear, border-color .5s linear;
 }
-header iframe {
-	position: absolute;
-	display: none;
-	right: 60px;
-	top: 2px;
-	background-color: rgba(0, 0, 0, .1);
-}
 footer {
 	display: block;
 	margin: 50px auto;
@@ -53,12 +46,14 @@ footer a {
 footer a:hover {
 	border-bottom: 1px solid white;
 }
-#view {
+.view {
 	padding: 0px 60px;
 	margin: 154px auto 0px auto;
 	background-color: white;
+	display: none;
+	min-height: 600px;
 }
-#view .gutter {
+.view .gutter {
 	width: 1000px;
 	padding: 60px 0px;
 	margin: 0px auto;

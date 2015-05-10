@@ -9,37 +9,33 @@
  */
 var FlaggerSwitchView = Backbone.View.extend({
 
-	tagName:  "div",
+	el: '#flagger_switch',
 
-	events:
-	{
+	events: {
 		'click #toggle_switch': 'toggle'
 	},
 
-	initialize: function()
-	{
+	initialize: function() {
+
 		this.render();
 	},
 
-	render: function()
-	{
-		flagger.templating.render('flagger_switch', {flagger_active: SETTINGS.flagger_active}, function(html) {
+	render: function() {
 
-			this.$el.html(html);
-			$("#flagger_switch").html(this.$el);
+		if (SETTINGS.flagger_active)
+			document.getElementById('toggle_switch').checked = true;
 
-			this.handle_switch_state();
+		this.handle_switch_state();
 
-			window.setTimeout(function() {
-				$('#flagger_switch').css('opacity', 1);
-			}, 50);
-		}.bind(this));
+		window.setTimeout(function() {
+			$('#flagger_switch').css('opacity', 1);
+		}, 50);
 
 		return this;
 	},
 
-	toggle: function()
-	{
+	toggle: function() {
+
 		SETTINGS.flagger_active = $('#toggle_switch').prop('checked');
 
 		addon_io.call('set_setting', {setting: 'flagger_active', val: SETTINGS.flagger_active}, function(data) {
@@ -47,9 +43,8 @@ var FlaggerSwitchView = Backbone.View.extend({
 		}.bind(this));
 	},
 
-	handle_switch_state: function()
-	{
-		// $('.slide-button').toggleClass('gray', !SETTINGS.flagger_active);
+	handle_switch_state: function() {
+
 		$('body').toggleClass('inactive', !SETTINGS.flagger_active);
 		$('#toggle_switch').prop('checked', SETTINGS.flagger_active);
 

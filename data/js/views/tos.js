@@ -9,30 +9,23 @@
  */
 var TosView = Backbone.View.extend({
 
-	tagName:  "div",
+	el: '#tos',
 
-	events:
-	{
+	events: {
 		'click a.agree_to_terms': 'accept_tos'
 	},
 
-	initialize: function()
-	{
+	initialize: function() {
 		this.render();
 	},
 
-	render: function()
-	{
-		flagger.templating.render('tos', {}, function(html) {
-			this.$el.html(html);
-			$("#view").html(this.$el);
-		}.bind(this));
+	render: function() {
+		$('#tos').show();
 		
 		return this;
 	},
 
-	accept_tos: function(e)
-	{
+	accept_tos: function(e) {
 		e.preventDefault();
 		
 		SETTINGS.tos_accepted = true;
@@ -40,7 +33,5 @@ var TosView = Backbone.View.extend({
 		addon_io.call('set_setting', {setting: 'tos_accepted', val: SETTINGS.tos_accepted}, function(data) {
 			flagger.handle_route();
 		});
-
-		
 	}
 });

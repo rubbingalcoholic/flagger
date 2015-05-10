@@ -6,13 +6,13 @@
   "author": "Jeff Lyon",
   "dependencies": [],
   "license": "GPL v3",
-  "version": "1.2.0",
+  "version": "1.3.1",
   "preferences": [
   {
       "name": "open_dashboard",
       "title": "Set more Flagger options in the dashboard:",
       "type": "control",
-      "label": "FLAGGER SETTINGS DASHBOARD"
+      "label": "Flagger Settings Dashboard"
     }
   ],
   "icon": "data/images/icon_logo_48.png"
